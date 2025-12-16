@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="sk">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Simulator zavodnych okruhov</title>
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    </head>
+    <body>
+        <header>
+            <h1>Simulátor závodných okruhov</h1>
+            <p><strong>Vypočítaj si čas na kolo podľa tvojích zadaných parametrov.</strong></p>
+
+            <a href="/">
+                <img class="logo" src="{{ url_for('static', filename='images/okruhinak.png') }}" alt="logo">
+            </a>
+        </header>
+
+        <main>
+            <section class="uvod">
+                <h2>Ako funguje simulácia:</h2>
+                <p><b>Zadaj parametre auta a zisti, aký čas dosiahne na okruhoch.</b></p>
+
+                <a href="/simulator" class="button">Spustiť simuláciu</a>
+
+                <p>Predstav si, že máš GT3 auto a chcel by si vedieť, aký priblížny čas by vedelo zajazdiť na pretekárskom okruhu.
+                To je zámienka tohto simulátora, není to nič komplikované...</p> 
+                <p>Zadáš iba 5 dôležitych údajov (3 technické o aute a 2 informatívne o okruhu),
+                ktoré následne budú premenené na priblížny čas daného okruhu.</p>
+
+                <img class="porsche" src="{{ url_for('static', filename='images/porsche.png') }}" alt="auto">
+            </section>
+        </main>
+        
+        <footer>
+            <p>&copy;2025 Okruh inak | Adam Bikár</p>
+        </footer>
+    </body>
+</html>

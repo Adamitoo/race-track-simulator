@@ -1,0 +1,229 @@
+header{
+    background-color: rgb(20, 19, 22);
+}
+
+header p{
+    color: white;
+}
+
+body{
+    background-color: rgb(175, 175, 175);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.logo{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 100px;
+    height: 100px;
+    border-radius: 10px 10px;
+    border-style: solid;
+    border-color: gray;
+}
+
+h1{
+    margin-top: 50px;
+    color: white;
+}
+
+a{
+    display: inline-block;
+    margin-top: 10px;
+}
+
+
+.button{
+    padding: 10px 20px;
+    background-color: greenyellow;
+    color: black;
+    border-style: groove;
+    border-color: green;
+    border-radius: 5px;
+    font-size: 15px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+footer{
+    text-align: center;
+    padding: 10px 0px;
+    margin-top: 80px;
+}
+
+form .tlacitko{
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: lightgray;
+    border-style: solid;
+    border-color: black;
+    border-radius: 5px;
+}
+
+form .parametreauta{
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: lightgray;
+    border-style: solid;
+    border-color: black;
+    border-radius: 5px;
+}
+
+form .parametretrate{
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: lightgray;
+    border-style: solid;
+    border-color: black;
+    border-radius: 5px;
+}
+
+.parametreauta label{
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.parametretrate label{
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.parametreauta input{
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid red;
+    border-radius: 5px;
+}
+
+.parametretrate input{
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid red;
+    border-radius: 5px;
+}
+
+
+.tlacitko button{
+    margin-top: 15px;
+    padding: 10px;
+    background-color: darkred;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.formular select{
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid red;
+    border-radius: 5px;
+}
+
+.parametreauta{
+    text-align: left;
+}
+
+.parametretrate{
+    text-align: left;
+}
+
+
+.vysledok{
+    margin-top: 20px;
+    padding: 15px;
+    background-color: lightgray;
+    border-style: solid;
+    border-radius: 5px;
+}
+
+.vysledok p{
+    background-color: lightgreen;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid darkgreen;
+    border-radius: 5px;
+}
+
+.stopky{
+    position: absolute;
+    top: 232px;
+    right: 220px;
+    transform: rotate(+15deg);
+}
+
+.sachovlajka{
+    position: absolute;
+    top: 180px;
+    left: 105px;
+    transform: rotate(-10deg);
+}
+
+
+
+.porsche{
+    position: absolute;
+    bottom: 30px;
+    right: 40px;
+    transform: rotate(+4deg);
+}
+
+.monza svg{
+    transform: rotate(+180deg)
+}
+
+.lambo{
+    transform: rotate(+180deg);
+}
+
+
+section{
+    padding: 20px;
+}
+
+.vysledok{
+    padding: 20px;
+    background: 181818;
+    border-radius: 10px;
+    width: 60%;
+    margin: 20px auto;
+}
+
+
+
+
+
+
+
+
+.container {
+  margin-left: 60px;
+  display: grid; 
+  grid-template-columns: 400px 400px 500px; 
+  grid-template-rows: 360px 180px; 
+  gap: 1px 50px; 
+  grid-template-areas: 
+    "paraauta paratrate anitrate"
+    ". vypocet anitrate"; 
+}
+.paraauta { grid-area: paraauta; }
+.paratrate { grid-area: paratrate; }
+.vypocet { grid-area: vypocet; }
+.anitrate { grid-area: anitrate; }

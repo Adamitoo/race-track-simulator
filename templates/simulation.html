@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="sk">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Simulator zavodnych okruhov</title>
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    </head>
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+    <body>
+        <header>
+            <h1>Simulátor závodných okruhov</h1>
+            <p>&#127937;</p>
+
+            <a href="/">
+                <img class="logo" src="{{ url_for('static', filename='images/okruhinak.png') }}" alt="logo">
+            </a>
+        </header>
+
+        <main>
+            {% if cas %}
+                <section class="vysledok">
+                    <h3>Výsledný čas na kolo:</h3>
+
+                    <p><strong>{{ cas }}</strong></p>
+                </section>
+                <img class="sachovlajka" src="{{ url_for('static', filename='images/sachovnicovavlajka.png') }}" alt="vlajka">
+                <img class="stopky" src="{{ url_for('static', filename='images/stopky.png') }}" alt="stopky">
+            {% endif %}
+
+            <section class="formular">
+                <form action="/simulator" method="post">
+                    <div class="container">
+                        <div class="paraauta">
+                            <section class="parametreauta">
+                                <h2>&#128663;<u>Zadaj parametre auta:</u></h2>
+
+                                <label for="vykon">Výkon auta kW:</label>
+                                <input type="number" id="vykon" name="vykon" value="{{ vykon if vykon is not none else '' }}" required>
+
+                                <label for="hmotnost">Hmotnosť auta kg:</label>
+                                <input type="number" id="hmotnost" name="hmotnost" value="{{ hmotnost if hmotnost is not none else '' }}" required>
+
+                                <label for="rychlost">Maximálna rýchlosť km/h:</label>
+                                <input type="number" id="rychlost" name="rychlost" value="{{ rychlost if rychlost is not none else '' }}" required>
+                            </section>
+                        </div>
+
+                        <div class="paratrate">
+                            <section class="parametretrate">
+                                <h2>&#128510;<u>Zadaj údaje okruhu:</u></h2>
+
+                                <label for="trat">Vyber trate:</label>
+                                <select id="trat" name="trat">
+                                    <option value="custom" {% if trat == 'custom' %}selected{% endif %}>Vlastná trať</option>
+                                    <option value="monza"  {% if trat == 'monza' %}selected{% endif %}>Monza</option>
+                                    <option value="spa"    {% if trat == 'spa' %}selected{% endif %}>Spa</option>
+                                </select>
+
+                                <label for="dlzka">Dĺžka trate km:</label>
+                                <input type="number" id="dlzka" step="0.01" name="dlzka" value="{{ dlzka if dlzka is not none else '' }}" required>
+
+                                <label for="zakruty">Počet zákrut trate:</label>
+                                <input type="number" id="zakruty" name="zakruty" value="{{ zakruty if zakruty is not none else '' }}" min="3" max="100" required>
+                            </section>
+                        </div>
+
+                        <div class="vypocet">
+                            <section class="tlacitko">
+                                <button type="submit">Vypočítať čas</button>
+                            </section>
+                        </div>
+            
+                        <div class="anitrate">
+                            <section class="animacie">
+                                <section class="monza">
+                                    <svg width="500" height="400">
+                                        <path id="monza" d="M 60 50 L 300 50 Q 310 50 310 60 Q 310 70 320 70 Q 420 40 420 150 L 420 230 Q 420 240 430 240 Q 440 240 440 250 L 445 290 Q 450 310 440 310 L 390 320 Q 380 320 380 310 L 370 260 L 320 150 Q 310 130 295 130 Q 280 130 280 110 Q 280 95 260 95 L 40 95 Q 20 95 20 75 Q 20 55 60 50 Z"0 stroke="black" stroke-width="6" fill="white" />
+
+                                        <image class="lambo" href="{{ url_for('static', filename='images/lambo.png') }}" x="-25" y="-25">
+                                            <animateMotion dur="30s" repeatCount="indefinite">
+                                                <mpath href="#monza" />
+                                            </animateMotion>
+                                        </image>
+                                    </svg>
+                                </section>
+
+                                <section class="spa">
+                                    <svg width="500" height="400">
+                                        <path id="spa" d="M 130 150 L 70 170 Q 60 170 70 160 L 130 120 L 200 90 Q 220 80 220 70 Q 220 65 230 60 Q 240 60 245 65 Q 255 70 265 65 L 300 55 L 440 50 Q 450 50 450 60 Q 450 70 460 70 Q 470 70 470 80 L 475 140 Q 475 150 465 150 Q 455 150 455 140 L 450 110 Q 450 100 440 100 L 370 105 Q 355 110 355 120 Q 355 140 365 145 L 380 160 Q 390 170 390 180 Z"0 stroke="black" stroke-width="6" fill="white" />
+                
+                                        <circle r="8" fill="goldenrod">
+                                            <animateMotion dur="30s" repeatCount="indefinite">
+                                                <mpath href="#spa" />
+                                            </animateMotion>
+                                        </circle>
+                                    </svg>
+                                </section>
+
+                                <section id="vlastnaTrat" style="display:none;">
+                                    <svg id="vlastnaSVG" width="500" height="400">
+                                        <path id="vlastnaPath" d="" stroke="black" stroke-width="6" fill="white"/>
+
+                                        <circle r="8" fill="red">
+                                            <animateMotion dur="30s" repeatCount="indefinite">
+                                                <mpath id="vlastnaMpath" href="#vlastnaPath"/>
+                                            </animateMotion>
+                                        </circle>
+                                    </svg>
+                                </section>
+                            </section>
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy;2025 Okruh inak | Adam Bikár</p>
+        </footer>
+    </body>
+</html>
